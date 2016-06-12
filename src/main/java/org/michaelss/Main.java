@@ -38,18 +38,16 @@ public class Main {
 		
 		Template temp = cfg.getTemplate("list.ftl");
 				
-		new File(FOLDER).mkdirs();
-//		Writer outFile = new OutputStreamWriter(new FileOutputStream(String.format("%s/list.html", FOLDER)), "utf-8");
-//		temp.process(entity, outFile);
-		
 		Class<SourceClass> clazz = SourceClass.class;
 		List<String> fields = new ArrayList<String>();
-//		fields.add("Teste");
-//		fields.add("Teste2");
 		
 		fields.add(clazz.getDeclaredFields()[0].getName());
 		fields.add(clazz.getDeclaredFields()[1].getName());
 		fields.add(clazz.getDeclaredFields()[2].getName());
+		
+		new File(FOLDER).mkdirs();
+		Writer outFile = new OutputStreamWriter(new FileOutputStream(String.format("%s/list.html", FOLDER)), "utf-8");
+		temp.process(entity, outFile);
 		
 		entity.setProperties(fields);
 		
