@@ -1,10 +1,14 @@
 package org.michaelss.models;
 
+import java.util.List;
+
 public class Entity {
 	
 	private String className;
 	
 	private String classNamePlural;
+	
+	private List<String> properties;
 
 	public Entity(String className, String classNamePlural) {
 		this.className = className;
@@ -25,6 +29,14 @@ public class Entity {
 
 	public void setClassNamePlural(String classNamePlural) {
 		this.classNamePlural = classNamePlural;
+	}
+
+	public List<String> getProperties() {
+		return properties;
+	}
+
+	public void setProperties(List<String> properties) {
+		this.properties = properties;
 	}
 	
 

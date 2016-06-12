@@ -5,8 +5,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.michaelss.models.Entity;
+import org.michaelss.models.SourceClass;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -36,9 +39,19 @@ public class Main {
 		Template temp = cfg.getTemplate("list.ftl");
 				
 		new File(FOLDER).mkdirs();
-		Writer outFile = new OutputStreamWriter(new FileOutputStream(String.format("%s/list.html", FOLDER)), "utf-8");
-		temp.process(entity, outFile);
+//		Writer outFile = new OutputStreamWriter(new FileOutputStream(String.format("%s/list.html", FOLDER)), "utf-8");
+//		temp.process(entity, outFile);
 		
+		Class<SourceClass> clazz = SourceClass.class;
+		List<String> fields = new ArrayList<String>();
+//		fields.add("Teste");
+//		fields.add("Teste2");
+		
+		fields.add(clazz.getDeclaredFields()[0].getName());
+		fields.add(clazz.getDeclaredFields()[1].getName());
+		fields.add(clazz.getDeclaredFields()[2].getName());
+		
+		entity.setProperties(fields);
 		
 		Writer out = new OutputStreamWriter(System.out);
 		temp.process(entity, out);
